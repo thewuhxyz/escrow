@@ -1,0 +1,29 @@
+[toolchain]
+anchor_version = "0.30.1"
+solana_version = "1.18.17"
+
+[features]
+seeds = false
+skip-lint = false
+
+[programs]
+[programs.localnet]
+demo_program = "AZPCSQM295H8YwBmEE3uRwnFj4xd7d8gjLWLLdCcuVRt"
+anchor_escrow = "Fk8r12vB8C4EYAXrXjxfKKpxDfPKtHQC6dHUAd6qXju3"
+
+[registry]
+url = "https://api.apr.dev"
+
+[provider]
+cluster = "localnet"
+wallet = "~/.config/solana/deployer.json"
+
+[scripts]
+test = "ts-mocha -p ./protocol/ts/tsconfig.json -t 1000000 protocol/ts/tests/**/*.test.ts"
+demo_program = "ts-mocha -p ./protocol/ts/tsconfig.json -t 1000000 protocol/ts/tests/demo-program.test.ts"
+anchor_escrow = "ts-mocha -p ./protocol/ts/tsconfig.json -t 1000000 protocol/ts/tests/anchor-escrow.test.ts"
+airdrop = "ts-mocha -p ./protocol/ts/tsconfig.json -t 1000000 protocol/ts/tests/airdrop.test.ts"
+
+[workspace]
+members = [ "protocol/programs/*" ]
+types = "protocol/ts/src/idl"
